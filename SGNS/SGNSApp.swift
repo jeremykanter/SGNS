@@ -31,10 +31,16 @@ struct SGNSApp: App {
     }
     
     var body: some Scene {
-        WindowGroup {
+        WindowGroup("SGNS") {
             ContentView()
                 .frame(minWidth: 320, idealWidth: 400, maxWidth: .infinity, minHeight: 400, idealHeight: 500, maxHeight: .infinity)
         }
         .defaultSize(width: 400, height: 500)
+        
+        WindowGroup("About SGNS", id: "about-sgns") {
+            AboutView()
+                .frame(minWidth: 400, idealWidth: 480, maxWidth: .infinity, minHeight: 480, idealHeight: 600, maxHeight: .infinity)
+        }
+        .defaultSize(width: 480, height: 600)
     }
 }

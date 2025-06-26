@@ -25,8 +25,11 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @Environment(\.openWindow) private var openWindow
+    
     @State private var date = Date()
     @State private var logoPressed = false
+    @State private var showAboutSheet = false
 
     let dateRange: ClosedRange<Date> = {
         let calendar = Calendar.current
@@ -92,12 +95,33 @@ struct ContentView: View {
             .padding(EdgeInsets(top: 0, leading: 32, bottom: 0, trailing: 32))
             Spacer()
             Spacer()
-            Text("Moon signs may not be completely accurate. For better accuracy, use a tool that takes into account the time and place of birth.")
+            Button("Moon signs may not be completely accurate. For better accuracy, use a tool that takes into account the time and place of birth.") {
+                #if os(iOS)
+                showAboutSheet.toggle()
+                #elseif os(macOS)
+                openWindow(id: "about-sgns")
+                #endif
+            }
                 .font(.caption2)
                 .foregroundStyle(.tertiary)
+                .buttonStyle(.plain)
                 .frame(alignment: .bottom)
                 .multilineTextAlignment(.center)
                 .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+                #if os(iOS)
+                .sheet(isPresented: $showAboutSheet) {
+                    NavigationView {
+                        AboutView()
+                            .toolbar {
+                                ToolbarItem(placement: .topBarLeading) {
+                                    Button("Close") {
+                                        showAboutSheet = false
+                                    }
+                                }
+                            }
+                    }
+                }
+                #endif
         }
         .padding(8)
     }
