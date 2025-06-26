@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		BD62F68E2DF3710C0030B8AD /* SwissEphemeris in Frameworks */ = {isa = PBXBuildFile; productRef = BD62F68D2DF3710C0030B8AD /* SwissEphemeris */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		BD62F66D2DF35F9F0030B8AD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD62F68E2DF3710C0030B8AD /* SwissEphemeris in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +117,7 @@
 			);
 			name = SGNS;
 			packageProductDependencies = (
+				BD62F68D2DF3710C0030B8AD /* SwissEphemeris */,
 			);
 			productName = SGNS;
 			productReference = BD62F65E2DF35F9D0030B8AD /* SGNS.app */;
@@ -195,6 +201,9 @@
 			);
 			mainGroup = BD62F6552DF35F9D0030B8AD;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				BD62F68C2DF3710C0030B8AD /* XCRemoteSwiftPackageReference "SwissEphemeris" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BD62F65F2DF35F9D0030B8AD /* Products */;
 			projectDirPath = "";
@@ -593,6 +602,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BD62F68C2DF3710C0030B8AD /* XCRemoteSwiftPackageReference "SwissEphemeris" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/vsmithers1087/SwissEphemeris";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.99;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BD62F68D2DF3710C0030B8AD /* SwissEphemeris */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BD62F68C2DF3710C0030B8AD /* XCRemoteSwiftPackageReference "SwissEphemeris" */;
+			productName = SwissEphemeris;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BD62F6562DF35F9D0030B8AD /* Project object */;
 }
