@@ -49,9 +49,6 @@ struct ContentView: View {
                 .monospaced()
                 .scaleEffect(logoPressed ? 0.9 : 1.0)
                 .padding(4)
-//                .onTapGesture {
-//                    date = Date.now
-//                }
                 .onLongPressGesture(minimumDuration: 0, maximumDistance: .infinity, pressing: { pressing in
                     withAnimation(.spring(duration: 0.2, bounce: 0.5)) {
                         logoPressed = pressing
@@ -95,16 +92,20 @@ struct ContentView: View {
             .padding(EdgeInsets(top: 0, leading: 32, bottom: 0, trailing: 32))
             Spacer()
             Spacer()
-            Button("Moon signs may not be completely accurate. For better accuracy, use a tool that takes into account the time and place of birth.") {
-                #if os(iOS)
-                showAboutSheet.toggle()
-                #elseif os(macOS)
-                openWindow(id: "about-sgns")
-                #endif
-            }
+            Text(aboutText)
+                .environment(\.openURL, OpenURLAction { url in
+                    if url.absoluteString == "internal://showAbout" {
+                        #if os(iOS)
+                        showAboutSheet = true
+                        #elseif os(macOS)
+                        openWindow(id: "about-sgns")
+                        #endif
+                        return .handled
+                    }
+                    return .systemAction
+                })
                 .font(.caption2)
                 .foregroundStyle(.tertiary)
-                .buttonStyle(.plain)
                 .frame(alignment: .bottom)
                 .multilineTextAlignment(.center)
                 .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
@@ -125,6 +126,19 @@ struct ContentView: View {
         }
         .padding(8)
     }
+        
+    private var aboutText: AttributedString {
+        var text = AttributedString("Moon signs may not be completely accurate. For better accuracy, use a tool that takes into account the time and place of birth. ")
+        
+        var linkText = AttributedString("View license information.")
+        linkText.link = URL(string: "internal://showAbout")
+        linkText.foregroundColor = .accent
+        
+        text.append(linkText)
+        
+        return text
+    }
+    
 }
 
 #Preview {
