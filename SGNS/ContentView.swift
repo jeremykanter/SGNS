@@ -92,7 +92,7 @@ struct ContentView: View {
             .padding(EdgeInsets(top: 0, leading: 32, bottom: 0, trailing: 32))
             Spacer()
             Spacer()
-            Text(aboutText)
+            Text("Moon signs may not be completely accurate. For better accuracy, use a tool that takes into account the time and place of birth. [View license information.](internal://showAbout)")
                 .environment(\.openURL, OpenURLAction { url in
                     if url.absoluteString == "internal://showAbout" {
                         #if os(iOS)
@@ -106,6 +106,7 @@ struct ContentView: View {
                 })
                 .font(.caption2)
                 .foregroundStyle(.tertiary)
+                .tint(.accent)
                 .frame(alignment: .bottom)
                 .multilineTextAlignment(.center)
                 .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
@@ -125,18 +126,6 @@ struct ContentView: View {
                 #endif
         }
         .padding(8)
-    }
-        
-    private var aboutText: AttributedString {
-        var text = AttributedString("Moon signs may not be completely accurate. For better accuracy, use a tool that takes into account the time and place of birth. ")
-        
-        var linkText = AttributedString("View license information.")
-        linkText.link = URL(string: "internal://showAbout")
-        linkText.foregroundColor = .accent
-        
-        text.append(linkText)
-        
-        return text
     }
     
 }

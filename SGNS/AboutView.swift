@@ -33,11 +33,13 @@ struct AboutView: View {
                 Text("SGNS is a simple app for looking up someone's sun and moon signs. It makes use of the Swiss Ephemeris projects by [Astrodienst](https://www.astro.com/swisseph/swephinfo_e.htm) and [Vincent Smithers](https://github.com/vsmithers1087/SwissEphemeris) and is released under the GNU Affero General Public License.")
                     .font(.subheadline)
                     .monospaced()
+                    .tint(.accent)
             }
             Section(header: Text("License").monospaced()) {
                 Text(licenseText)
                     .font(.subheadline)
                     .monospaced()
+                    .tint(.accent)
                     .onAppear {
                         self.loadLicense()
                     }
